@@ -1,0 +1,226 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0.0",
+      "title": "ProjetoSofteam",
+      "description": "Projeto do back-end",
+      "termsOfService": "nullable",
+      "contact": {
+        "name": "Sanny Souza Marques",
+        "email": "sannysmarques@hotmail.com"
+      },
+      "license": {
+        "name": "2018 © SOFTEAM",
+        "url": "http://softeam.com.br"
+      }
+    },
+    "schemes": [
+      "https"
+    ],
+    "basePath": "/localhost:3000",
+    "paths": {
+      "/funcionario": {
+        "get": {
+          "description": "Retorna todos os funcionários cadastrados",
+          "tags": [
+            "funcionario"
+          ],
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "Funcionário registrado"
+            },
+            "500": {
+              "description": "Erro no sistema"
+            }
+          }
+        },
+        "post": {
+          "summary": "Registro",
+          "description": "Registrar um novo funcionário",
+          "tags": [
+            "funcionario"
+          ],
+          "responses": {
+            "201": {
+              "description": "Funcionário registrado",
+              "schema": {
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "Sanny"
+                  },
+                  "cpf": {
+                    "type": "number",
+                    "example": 12345678900
+                  },
+                  "telefone": {
+                    "type": "number",
+                    "example": 123456789
+                  },
+                  "cep": {
+                    "type": "number",
+                    "example": 12345000
+                  },
+                  "numero": {
+                    "type": "number",
+                    "example": 12
+                  },
+                  "complemento": {
+                    "type": "string",
+                    "example": "Condomínio Exemplo"
+                  }
+                },
+                "required": [
+                  "nome, cpf"
+                ]
+              }
+            },
+            "400": {
+              "description": "CPF já existente!"
+            }
+          }
+        }
+      },
+      "/funcionario/cpf": {
+        "get": {
+          "summary": "Retorna um usuário a partir do seu CPF",
+          "tags": [
+            "funcionario"
+          ],
+          "parameters": [
+            {
+              "name": "cpf",
+              "in": "path",
+              "description": "CPF do funcionário desejado",
+              "required": true,
+              "type": "number"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Funcionário encontrado"
+            },
+            "404": {
+              "description": "Funcionário não cadastrado"
+            },
+            "500": {
+              "description": "Erro no sistema"
+            }
+          }
+        },
+        "put": {
+          "summary": "Atualizar dados",
+          "tags": [
+            "funcionario"
+          ],
+          "parameters": [
+            {
+              "name": "cpf",
+              "in": "path",
+              "required": true,
+              "type": "number",
+              "format": "email",
+              "description": "email do usuário a ser atualizado"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Dados atualizados",
+              "schema": {
+                "properties": {
+                  "nome": {
+                    "type": "string",
+                    "example": "SannyNovo"
+                  },
+                  "telefone": {
+                    "type": "number",
+                    "example": 585
+                  },
+                  "cep": {
+                    "type": "number",
+                    "example": "09876123"
+                  },
+                  "numero": {
+                    "type": "number",
+                    "example": 13
+                  },
+                  "complemento": {
+                    "type": "string",
+                    "example": "Novo cond."
+                  }
+                },
+                "required": [
+                  "cpf"
+                ]
+              }
+            },
+            "500": {
+              "description": "Erro no sistema"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Deleta um funcionário",
+          "tags": [
+            "funcionario"
+          ],
+          "parameters": [
+            {
+              "name": "cpf",
+              "in": "path",
+              "required": true,
+              "type": "number",
+              "format": "memberID",
+              "description": "CPF do funcionário a ser deletado"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Funcionário deletado"
+            },
+            "404": {
+              "description": "Funcionário não cadastrado"
+            },
+            "500": {
+              "description": "Erro no sistema"
+            }
+          }
+        }
+      }
+    },
+    "definitions": {
+      "Funcionario": {
+        "type": "object",
+        "required": [
+          "cpf, nome"
+        ],
+        "properties": {
+          "nome": {
+            "type": "string",
+            "example": "Sanny"
+          },
+          "cpf": {
+            "type": "number",
+            "example": 12345678900
+          },
+          "telefone": {
+            "type": "number",
+            "example": 123456789
+          },
+          "cep": {
+            "type": "number",
+            "example": 12345000
+          },
+          "numero": {
+            "type": "number",
+            "example": 12
+          },
+          "complemento": {
+            "type": "string",
+            "example": "Condomínio Exemplo"
+          }
+        }
+      }
+    }
+  }
